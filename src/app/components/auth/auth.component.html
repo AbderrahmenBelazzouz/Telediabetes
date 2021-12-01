@@ -1,0 +1,62 @@
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img  src="../assets/img/profile.png" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form #loginForm="ngForm" novalidate="">
+      <input type="text" [(ngModel)]="username" id="login" class="fadeIn second"
+        placeholder="username" pattern="[a-zA-Z]{1,}" maxlength="32" minlength="4" name="un" #un="ngModel" required>
+
+        <div *ngIf="un.invalid && (un.dirty || un.touched)"
+        class="alert">
+
+        <div *ngIf="un.errors?.required">
+          UserName is required.
+        </div>
+        <div *ngIf="un.errors?.minlength">
+          UserName must be at least 4 characters long.
+        </div>
+        <div *ngIf="un.errors?.maxlength">
+          UserName must be at most 32 characters long.
+        </div>
+        <div *ngIf="un.errors?.pattern">
+          UserName must not be a number.
+        </div>
+
+      </div>
+
+      <input type="password" [(ngModel)]="password" id="password" class="fadeIn third"
+        maxlength="25" minlength="8" placeholder="password" name="pass" #pass="ngModel" required >
+
+        <div *ngIf="pass.invalid && (pass.dirty || pass.touched)"
+        class="alert">
+
+        <div *ngIf="pass.errors?.required">
+          Password is required.
+        </div>
+        <div *ngIf="pass.errors?.minlength">
+          Password must be at least 8 characters long.
+        </div>
+        <div *ngIf="pass.errors?.maxlength">
+          Password must be at most 25 characters long.
+        </div>
+
+      </div>
+
+
+      <input  type="submit" (click)="checkLogin()" class="fadeIn fourth" value="Log In">
+    </form>
+
+ <!-- Remind Passowrd -->
+ <div id="formFooter">
+  <a class="underlineHover" href="#">Forgot Password?</a>
+</div>
+
+</div>
+</div>

@@ -1,0 +1,45 @@
+
+<div class="container" *ngIf="isAideSoignant()">
+  <div class="row">
+    <div class="row">
+      <div class="col-2" id="side">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-10" id="main">
+        <div class="row">
+
+          <div class="col-6">
+            <h1>Patients</h1>
+          </div>
+        </div>
+
+        <div class="row">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th scope="col">CIN</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Sexe</th>
+                <th scope="col">Action</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of patients">
+                <td>{{p.username}}</td>
+                <td id="cin">{{p.cin}}</td>
+                <td>{{p.nom}}</td>
+                <td>{{p.prenom}}</td>
+                <td>{{p.sexe}}</td>
+                <td><i routerLink="/users/{{p.id}}" class="bi bi-pencil-square"></i></td>
+             </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

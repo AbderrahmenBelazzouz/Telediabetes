@@ -1,0 +1,97 @@
+
+<div class="container" *ngIf="isDoctor() || isAideSoignant()">
+  <div class="row">
+    <div class="row">
+      <div class="col-2" id="side">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-10" id="main">
+        <div class="row">
+
+          <div class="col-6">
+            <h1>Consultations</h1>
+          </div>
+        </div>
+      <div class="row" *ngIf="isAideSoignant()">
+
+        <form #CForm="ngForm" (ngSubmit)="addNewC()">
+
+          <div class="row">
+
+            <div class="col-4">
+              <div class="form-group">
+                <div class="row">
+                  <label for="db">Date </label>
+                  <input [(ngModel)]="c.appointmentDate" name="time" #time="ngModel"
+                  type="datetime-local" class="form-control" required>
+
+                  <div *ngIf="time.invalid && (time.dirty || time.touched)" class="alert">
+                    <div *ngIf="time.errors?.required"> Date Consultation is required.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 offset-1">
+              <div class="form-group">
+                <div class="row">
+                  <label for="name">Dossier Medical</label>
+                  <!-- DropDownList -->
+                  <select [(ngModel)]="dm.id" name="d" class="form-control"
+                    #d="ngModel" [ngClass]="{ 'is-invalid': dm.invalid }" required>
+                    <option value="" disabled class="text-primary font-weight-bolder">
+                      --- Select Dossier Medical ---
+                    </option>
+                    <option *ngFor="let dm of dms" [ngValue]="dm.id">{{dm.id}}- {{dm.description}}</option>
+                  </select>
+
+                  <!-- Required Validation Message -->
+                  <div *ngIf="d.invalid && (d.dirty || d.touched)" class="alert">
+                    <div *ngIf="d.errors.required">Dossier Medical is Required</div>
+                  </div>
+                </div>
+                </div>
+                </div>
+           </div>
+
+          <button  [disabled]="CForm.form.invalid" class="btn btn-success">Enregistrer</button>
+        </form>
+      </div>
+
+
+
+
+        <div class="row">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Matricule</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date</th>
+                <th scope="col">Etat</th>
+                <th scope="col">Action</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let c of consultations">
+                <td>Consultation N° {{c.id}}</td>
+                <td>{{c.dm.description}}</td>
+                <td>{{c.appointmentDate}}</td>
+                <td *ngIf="c.state=='EN_ATTENTE'" class="stateOff">{{c.state}}</td>
+                <td *ngIf="c.state=='EN_COURS'" class="stateOn">{{c.state}}</td>
+                <td *ngIf="c.state=='TERMINER'" class="stateDone">{{c.state}}</td>
+                <td *ngIf="isAideSoignant()"><i (click)="deleteC(c.id)" class="bi bi-trash-fill fa-5x"></i></td>
+                <td *ngIf="isDoctor()"><i routerLink="/dm/consultation/{{c.id}}/nav" class="bi bi-eye-fill fa-5x"></i></td>
+
+
+
+             </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

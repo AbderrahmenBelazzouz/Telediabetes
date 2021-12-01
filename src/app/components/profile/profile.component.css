@@ -1,0 +1,15 @@
+#side{
+  border-right: 1px solid black;
+}
+#main{
+  margin: 10px;
+}
+.rounded{
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+}
+button{
+  margin-top: 5px;
+  margin-right: 5px;
+}

@@ -1,0 +1,6 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+.alert{
+  color: red;
+  font-size: small;
+  opacity: 0.7;
+}

@@ -1,0 +1,237 @@
+
+<div class="container" *ngIf="currentUser.role !='ROLE_PATIENT'">
+  <div class="row">
+    <div class="row">
+      <div class="col-2" id="side">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-10" id="main">
+  <h2 *ngIf="isAdmin()" class="text-center">Edit User</h2>
+  <h2 *ngIf="isAideSoignant()" class="text-center">Edit Patient</h2>
+  <form #UpdateForm="ngForm">
+    <div *ngIf="isAdmin()" class="form-group">
+      <label for="username">Username:</label>
+              <input type="text" [(ngModel)]="user.username" id="username" class="form-control"
+              placeholder="username" pattern="[a-zA-Z]{1,}" maxlength="32" minlength="4" name="un" #un="ngModel" required>
+                  <div *ngIf="un.invalid && (un.dirty || un.touched)" class="alert">
+
+                    <div *ngIf="un.errors?.required">
+                      UserName is required.
+                    </div>
+                    <div *ngIf="un.errors?.minlength">
+                      UserName must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="un.errors?.maxlength">
+                      UserName must be at most 32 characters long.
+                    </div>
+                    <div *ngIf="un.errors?.pattern">
+                      UserName must not be a number.
+                    </div>
+                  </div>
+              </div>
+
+    <div *ngIf="isAdmin()" class="form-group">
+      <label for="role">Role</label>
+              <!-- DropDownList -->
+              <select disabled class="form-control" name="role" [(ngModel)]="user.role"
+              #role="ngModel"
+              [ngClass]="{ 'is-invalid': role.invalid }" required>
+              <option value="" disabled class="text-primary font-weight-bolder">
+                --- Select Role ---
+              </option>
+              <option [value]='ROLE_ADMIN'>ADMIN</option>
+              <option [value]='ROLE_MEDECIN'>MEDECIN</option>
+              <option [value]='ROLE_AIDE_SOIGNANT'>AIDE_SOIGNANT</option>
+              <option [value]='ROLE_PATIENT'>PATIENT</option>
+            </select>
+
+            <!-- Required Validation Message -->
+            <div *ngIf="role.invalid && (role.dirty || role.touched)" class="alert">
+              <div *ngIf="role.errors.required">Role is Required</div>
+            </div>
+          </div>
+
+    <div *ngIf="isAdmin()" class="form-group">
+      <label for="state">State</label>
+              <!-- DropDownList -->
+              <select class="form-control" name="st" [(ngModel)]="user.state"
+              #st="ngModel"
+              [ngClass]="{ 'is-invalid': st.invalid }" required>
+              <option value="" disabled class="text-primary font-weight-bolder">
+                --- Select State ---
+              </option>
+              <option [value]="ACTIVE">ACTIVE</option>
+              <option [value]="INACTIVE">INACTIVE</option>
+            </select>
+
+            <!-- Required Validation Message -->
+            <div *ngIf="st.invalid && (st.dirty || st.touched)" class="alert">
+              <div *ngIf="st.errors.required">State is Required</div>
+            </div>
+          </div>
+
+    <div *ngIf="isAdmin()" class="form-group">
+      <label for="phone">Telephone</label>
+              <input type="text" [(ngModel)]="user.telephone" placeholder="07..." name="phone" class="form-control" id="phone"
+               pattern="[0][7|6|5][0-9]{8}" name="ph" #ph="ngModel" required>
+                  <div *ngIf="ph.invalid && (ph.dirty || ph.touched)" class="alert">
+
+                    <div *ngIf="ph.errors?.required">
+                      phone Number is required.
+                    </div>
+                    <div *ngIf="ph.errors?.pattern">
+                      Please Enter a valid Phone Number.
+                    </div>
+                  </div>
+                </div>
+
+    <!-- patient update -->
+    <div *ngIf="isAideSoignant() || isDoctor()" class="form-group">
+      <label for="cin">CIN:</label>
+      <input type="text"  [(ngModel)]="patient.cin" name="cin" class="form-control" id="cin"
+      placeholder="LB1234" pattern="[a-zA-Z]{2}[0-9]{4}" name="cin" #cin="ngModel" required>
+          <div *ngIf="cin.invalid && (cin.dirty || cin.touched)" class="alert">
+
+            <div *ngIf="cin.errors?.required">
+              CIN is required.
+            </div>
+            <div *ngIf="cin.errors?.pattern">
+              Please Enter a valid CIN.
+            </div>
+          </div>
+    </div>
+
+    <div *ngIf="isAideSoignant() || isDoctor()" class="form-group">
+      <label for="nom">Nom:</label>
+      <input type="text" [(ngModel)]="patient.nom" class="form-control"
+              placeholder="name" pattern="[a-zA-Z]{1,}" maxlength="32" minlength="4"
+               name="n" #n="ngModel" required>
+                  <div *ngIf="n.invalid && (n.dirty || n.touched)" class="alert">
+
+                    <div *ngIf="n.errors?.required">
+                      Nom is required.
+                    </div>
+                    <div *ngIf="n.errors?.minlength">
+                      Nom must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="n.errors?.maxlength">
+                      Nom must be at most 32 characters long.
+                    </div>
+                    <div *ngIf="n.errors?.pattern">
+                      Nom must not be a number.
+                    </div>
+                  </div>
+    </div>
+
+    <div *ngIf="isAideSoignant() || isDoctor()" class="form-group">
+      <label for="prenom">Prenom</label>
+      <input type="text" [(ngModel)]="patient.prenom" class="form-control"
+              placeholder="prenom" pattern="[a-zA-Z]{1,}" maxlength="32" minlength="4"
+              name="p" #p="ngModel" required>
+                  <div *ngIf="p.invalid && (p.dirty || p.touched)" class="alert">
+
+                    <div *ngIf="p.errors?.required">
+                      Prenom is required.
+                    </div>
+                    <div *ngIf="p.errors?.minlength">
+                      Prenom must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="p.errors?.maxlength">
+                      Prenom must be at most 32 characters long.
+                    </div>
+                    <div *ngIf="p.errors?.pattern">
+                      Prenom must not be a number.
+                    </div>
+                  </div>
+    </div>
+
+    <div *ngIf="isAideSoignant() || isDoctor()" class="form-group">
+      <label for="sexe">Sexe</label>
+      <!-- DropDownList -->
+        <select [(ngModel)]="patient.sexe" name="sex" class="form-control"
+          #sex="ngModel" [ngClass]="{ 'is-invalid': sex.invalid }" required>
+          <option value="" disabled class="text-primary font-weight-bolder">
+            --- Select GENDER ---
+          </option>
+          <option [value]="HOMME">HOMME</option>
+          <option [value]="FEMME">FEMME</option>
+      </select>
+
+      <!-- Required Validation Message -->
+      <div *ngIf="sex.invalid && (sex.dirty || sex.touched)" class="alert">
+        <div *ngIf="sex.errors.required">Gneder is Required</div>
+      </div>
+    </div>
+
+    <div *ngIf="isAideSoignant() || isDoctor()" class="form-group">
+      <label for="type">Type De Diabete</label>
+      <!-- DropDownList -->
+        <select [(ngModel)]="patient.type" name="type" class="form-control"
+          #type="ngModel" [ngClass]="{ 'is-invalid': type.invalid }" required>
+          <option value="" disabled class="text-primary font-weight-bolder">
+            --- Select Type ---
+          </option>
+          <option [value]="TYPE_1">TYPE 1</option>
+          <option [value]="TYPE_2">TYPE 2</option>
+      </select>
+
+      <!-- Required Validation Message -->
+      <div *ngIf="type.invalid && (type.dirty || type.touched)" class="alert">
+        <div *ngIf="type.errors.required">Type is Required</div>
+      </div>
+    </div>
+
+    <div *ngIf="isAideSoignant() || isDoctor()" class="form-group">
+      <label for="db">Date Naissance</label>
+      <input [(ngModel)]="patient.dateNaissance" name="db" #db="ngModel"
+      type="date" class="form-control" required>
+      <div *ngIf="db.invalid && (db.dirty || db.touched)" class="alert">
+
+        <div *ngIf="db.errors?.required">
+          Date Naissance is required.
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="isAideSoignant() || isDoctor()" class="form-group">
+      <label for="adresse">Adresse</label>
+      <input type="text" [(ngModel)]="patient.adresse" class="form-control"
+              placeholder="zone 9..." maxlength="52" name="ad" #ad="ngModel" required>
+                  <div *ngIf="ad.invalid && (ad.dirty || ad.touched)" class="alert">
+                    <div *ngIf="ad.errors?.required">
+                      Adresse is required.
+                    </div>
+                    <div *ngIf="p.errors?.maxlength">
+                      Adresse must be at most 52 characters long.
+                    </div>
+                  </div>
+    </div>
+
+    <div *ngIf="isAideSoignant() || isDoctor()" class="form-group">
+      <label for="phone">Telephone</label>
+              <input type="text" [(ngModel)]="patient.telephone" placeholder="07..." name="phone" class="form-control" id="phone"
+               pattern="[0][7|6|5][0-9]{8}" name="tel" #tel="ngModel" required>
+                  <div *ngIf="tel.invalid && (tel.dirty || tel.touched)" class="alert">
+
+                    <div *ngIf="tel.errors?.required">
+                      phone Number is required.
+                    </div>
+                    <div *ngIf="tel.errors?.pattern">
+                      Please Enter a valid Phone Number.
+                    </div>
+                  </div>
+                </div>
+    <button [disabled]="UpdateForm.form.invalid" *ngIf="isAdmin()" class="btn btn-success" (click)="updateUser()">submit</button>
+    <button *ngIf="isAdmin()" class="btn btn-info" routerLink="/users">cancel</button>
+
+    <button [disabled]="UpdateForm.form.invalid" *ngIf="isAideSoignant() || isDoctor()" class="btn btn-success" (click)="updatePatient()">submit</button>
+    <button *ngIf="isAideSoignant()" class="btn btn-info" routerLink="/aideSoignant/patients">cancel</button>
+    <button *ngIf="isDoctor()" class="btn btn-info" routerLink="/medecin/patients">cancel</button>
+
+  </form>
+  </div>
+  </div>
+  </div>
+</div>
+
+

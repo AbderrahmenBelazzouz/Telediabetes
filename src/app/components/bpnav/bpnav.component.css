@@ -1,0 +1,15 @@
+a{
+  color:silver;
+
+}
+a:hover{
+  cursor: pointer;
+  color: dimgray;
+}
+.active{
+  border: solid rgb(97, 96, 96) 1px;
+  border-radius: 3px;
+  border-bottom: none;
+  color: dimgray;
+
+}

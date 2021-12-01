@@ -1,0 +1,41 @@
+
+<div class="container" *ngIf="currentUser.role ==='ROLE_ADMIN'">
+  <div class="row">
+    <div class="row">
+      <div class="col-2" id="side">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-10" id="main">
+        <div class="row"><h1>Users Mangement</h1></div>
+        <div class="row">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Role</th>
+                <th scope="col">State</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td>{{user.username}}</td>
+                <td>{{user.role}}</td>
+                <td>{{user.state}}</td>
+                <td>
+                  <i class="bi bi-trash-fill" (click)="deleteUser(user.id)"></i>
+                  <i class="bi bi-pencil-square"  routerLink="/users/{{user.id}}"> </i>
+                </td>
+
+             </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

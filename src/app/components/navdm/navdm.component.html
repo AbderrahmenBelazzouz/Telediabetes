@@ -1,0 +1,40 @@
+
+  <div class="row">
+    <div class="col-5">
+      <h1>Consultation/00{{c.id}}</h1>
+    </div>
+    <div class="col-3 offset-2">
+      <select [(ngModel)]="c.state"
+                        name="state"
+                        [ngModelOptions]="{standalone: true}"
+                        class="custom-select"
+                        (change)="onChange($event.target.value)"
+                        [disabled]="isPatient()"
+                        >
+                  <option selected>{{c.state}}</option>
+                  <option>EN_COURS</option>
+                  <option>TERMINER</option>
+                </select>
+    </div>
+
+  <div class="row">
+    <div class="col-2" id="t">Date</div>
+    <div class="col-2">{{c.createDate}}</div>
+  </div>
+
+  <div class="row">
+    <nav *ngIf="isDoctor()"  class="navbar navbar-expand-lg">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <a class="nav-link" routerLinkActive="active" routerLink="/dm/consultation/{{c.id}}/1/info">Information</a>
+
+            <a class="nav-link" routerLinkActive="active" routerLink="/dm/consultation/{{c.id}}/2/antecedents" >Antecedents</a>
+
+            <a class="nav-link" routerLinkActive="active" routerLink="/dm/consultation/{{c.id}}/3/intero" >Consultation</a>
+
+            <a class="nav-link" routerLinkActive="active" routerLink="/dm/consultation/{{c.id}}/4/bilanDemande" >Bilan</a>
+        </ul>
+      </div>
+   </nav>
+  </div>
+

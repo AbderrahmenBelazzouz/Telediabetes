@@ -1,0 +1,33 @@
+a{
+  color:silver;
+
+}
+a:hover{
+  cursor: pointer;
+  color: dimgray;
+}
+#t{
+  font-weight: bold;
+  border-right: black 1px solid;
+}
+.active{
+  border: solid rgb(97, 96, 96) 1px;
+  border-radius: 3px;
+  border-bottom: none;
+  color: dimgray;
+
+}
+select{
+  margin-top: 12px;
+  background-color: dodgerblue;
+  color: aliceblue;
+  border-radius: 5%;
+  font-weight: 500;
+  border-color: aliceblue;
+  padding: 5px;
+}
+select:disabled{
+  background-color:darkgrey;
+  color: black;
+}
+

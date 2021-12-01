@@ -1,0 +1,139 @@
+<div class="container" *ngIf="currentUser.role ==='ROLE_MEDECIN'">
+  <div class="row">
+    <div class="row">
+      <div class="col-2" id="side">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-9" id="main">
+        <div class="row">
+          <div class="col-12" id="nav">
+            <app-navdm (messageEvent)="recieveMsg($event)"></app-navdm>
+          </div>
+          <div class="col-12" id="content" *ngIf="state!='TERMINER'">
+            <div class="row">
+              <div class="col-3"><button class="btn btn-warning" onClick="window.print();"><i class="bi bi-printer-fill"></i>Imprimer bilan</button></div>
+            </div>
+            <div class="row" id="e">
+              <div class="col-4" id="t">PRODUIT ou ORGANE a examiner</div>
+              <div class="col-5">
+                <input [(ngModel)]="prod" type="text" placeholder="Glycemie , hba1c ..." class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+
+              </div>
+            </div>
+            <div class="row" id="e">
+              <div class="col-4" id="t">Recherche Demandée</div>
+              <div class="col-5">
+                <input [(ngModel)]="rchDmd" type="text" placeholder="..." class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+
+              </div>
+            </div>
+            <div class="row" id="e">
+              <div class="col-4" id="t">Resultat de l'examen</div>
+              <div class="col-5">
+                <input [(ngModel)]="rslt" type="text" placeholder="..." class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--  print template-->
+<div class="print">
+
+
+
+  <style type="text/css">@media print{.form-section{display:inline!important}.form-pagebreak{display:none!important}.form-section-closed{height:auto!important}.page-section{position:initial!important}}</style>
+  <link type="text/css" rel="stylesheet" href="https://cdn01.jotfor.ms/themes/CSS/5e6b428acc8c4e222d1beb91.css?themeRevisionID=5f7ed99c2c2c7240ba580251"/>
+  <link type="text/css" rel="stylesheet" href="https://cdn02.jotfor.ms/css/styles/payment/payment_styles.css?3.3.27216" />
+  <link type="text/css" rel="stylesheet" href="https://cdn03.jotfor.ms/css/styles/payment/payment_feature.css?3.3.27216" />
+
+
+  <form class="jotform-form"   id="212314636856559" accept-charset="utf-8" autocomplete="on">
+
+    <div role="main" class="form-all">
+      <style>
+        .form-all:before { background: none;}
+      </style>
+      <ul class="form-section page-section">
+        <li id="cid_1" class="form-input-wide" data-type="control_head">
+          <div class="form-header-group  header-large">
+            <div class="header-text httar htvam">
+              <h1 id="header_1" class="form-header" data-component="header">
+                FICHE D&#x27;EXAMEN SPECIAL
+              </h1>
+            </div>
+          </div>
+        </li>
+
+        <li class="form-line" data-type="control_inline" id="id_76">
+          <div id="cid_76" class="form-input-wide" data-layout="full">
+            <div id="FITB_76" class="FITB formRender">
+
+
+                <div class="row">
+                  <div class="col-5">
+                    <strong>Nom: </strong> {{p.nom}}
+                  </div>
+                  <div class="col-5">
+                    <strong>Prenom: </strong> {{p.prenom}}
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-5">
+                    <strong>Laboratoire: </strong> {{labo}}
+                  </div>
+                  <div class="col-5">
+                    <strong>Service: </strong> {{srv}}
+                  </div>
+                </div>
+
+            </div>
+          </div>
+        </li>
+
+        <li>
+        <table class="demo">
+          <thead>
+          <tr>
+            <th>NUMERO</th>
+            <th>PRODUIT ou ORGANE à examiner</th>
+            <th>Recherche demande</th>
+            <th>Resultat</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td></td>
+            <td>{{prod}}</td>
+            <td>{{rchDmd}}</td>
+            <td>{{rslt}}</td>
+          </tr>
+          </tbody>
+        </table>
+        </li>
+
+        <li>
+          <div class="row">
+            <div id="med" class="col-5 offset-7"><strong>Medecin: Dr.</strong>{{username}} </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+
+
+
+  </form>
+
+</div>
+

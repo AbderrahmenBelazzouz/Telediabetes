@@ -1,0 +1,80 @@
+<div class="container" *ngIf="!isDoctor() || !isPatient()">
+  <div class="row">
+    <div class="row">
+      <div class="col-2" id="side">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-9" id="main">
+        <div class="row">
+          <div class="col-12" id="nav">
+            <app-navdm (messageEvent)="recieveMsg($event)"></app-navdm>
+            <app-ec-nav></app-ec-nav>
+        </div>
+
+
+        <div class="col-12" id="content">
+
+          <div class="row">
+            <div class="col-6" id="ec">
+
+              <div class="row" id="title">General</div>
+
+              <div  *ngIf="isDoctor() && state!='TERMINER'" class="row" id="add">
+                <div class="input-group">
+                  <div class="input-group-prepend col-4">
+                    <input [(ngModel)]="eleg.nom" type="text" class="form-control">
+                  </div>
+                  <input [(ngModel)]="eleg.remarque" type="text" class="form-control">
+                  <i (click)="addElement('g')" class="bi bi-save-fill"></i>
+                </div>
+              </div>
+
+              <div class="row" id="list">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                  <table class="table">
+                    <tbody>
+                      <tr *ngFor="let g of general">
+                        <td id="nom" class="col-4">{{g.nom}}</td>
+                        <td id="rmq" class="col-7"><em>{{g.remarque}}</em></td>
+                        <td><i  *ngIf="isDoctor() && state!='TERMINER'" (click)="delete(g.id, 'g')"class="bi bi-trash-fill"></i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-6" id="ec">
+              <div class="row" id="title">Par Appareil</div>
+              <div  *ngIf="isDoctor() && state!='TERMINER'" class="row" id="add">
+                <div class="input-group">
+                  <div class="input-group-prepend col-4">
+                    <input [(ngModel)]="elea.nom" type="text" class="form-control">
+                  </div>
+                  <input [(ngModel)]="elea.remarque" type="text" class="form-control">
+                  <i (click)="addElement('a')" class="bi bi-save-fill"></i>
+                </div>
+              </div>
+
+              <div class="row" id="list">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                  <table class="table">
+                    <tbody>
+                      <tr *ngFor="let a of appareil">
+                        <td id="nom" class="col-4">{{a.nom}}</td>
+                        <td id="rmq" class="col-7"><em>{{a.remarque}}</em></td>
+                        <td><i  *ngIf="isDoctor() && state!='TERMINER'" (click)="delete(a.id, 'a')" class="bi bi-trash-fill"></i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+  </div>
+</div>

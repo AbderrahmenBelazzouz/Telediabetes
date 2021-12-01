@@ -1,0 +1,22 @@
+.container{
+  background-color: white;
+}
+#side{
+  border-right: 1px solid black;
+}
+#main{
+  margin: 10px;
+}
+.rounded{
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+}
+#t{
+  font-weight: bold;
+  border-right: black 1px solid;
+}
+app-navdm{
+  margin-top: 15px;
+}
+

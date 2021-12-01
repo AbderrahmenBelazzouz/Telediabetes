@@ -1,0 +1,92 @@
+
+h2{
+  margin-left: 5px;
+}
+#side{
+  border-right: 1px solid black;
+}
+#main{
+  margin: 10px;
+}
+.rounded{
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+#ec{
+  height: 250px;
+}
+.my-custom-scrollbar {
+  position: relative;
+  height: 200px;
+  overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+  display: block;
+  }
+
+#ant{
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+em{
+  font-size: small;
+  color:dimgray;
+}
+.t{
+  color: dodgerblue;
+  font-weight: 500;
+}
+.bi-eye-fill:hover{
+  color:dodgerblue;
+}
+i{
+  font-size: 18px;
+}
+i:hover{
+  cursor: pointer;
+}
+tr:hover {
+  border-color:rgb(0, 0, 0);
+  font-weight: bold;
+}
+#b{
+margin-left: 10px;
+}
+#b:hover{
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: large;
+}
+#bps{
+  padding: 10px;
+  border: solid 1px white;
+  border-radius: 5px;
+  background-color:lightskyblue;
+
+}
+#bps:hover{
+  background-color: dodgerblue;
+}
+
+#iot{
+  margin-left: 3px;
+  padding: 10px;
+  border: solid 1px white;
+  border-radius: 5px;
+  background-color:rgb(250, 135, 135);
+
+}
+#iot:hover{
+  background-color: rgb(255, 30, 30);
+}
+.icons{
+  width: 36px;
+  height: 36px
+}
+

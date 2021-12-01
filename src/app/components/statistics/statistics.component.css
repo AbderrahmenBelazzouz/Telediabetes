@@ -1,0 +1,25 @@
+.box{
+  border-radius: 3px;
+  border: 1px solid #D8D8D8;
+  padding:10px;
+  margin: 5px;
+}
+
+.filter{
+  margin: 10px;
+}
+.title{
+  font-weight: 500;
+  font-size: large;
+  padding:10px;
+  padding-left: 0;
+}
+.container{
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+canvas{
+  margin:0px;
+  padding:0px
+}
+

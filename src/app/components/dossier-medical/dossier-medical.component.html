@@ -1,0 +1,143 @@
+
+<div class="container" *ngIf="isDoctor() || isPatient()">
+  <div class="row">
+    <div class="row">
+      <div class="col-2" id="side">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-9" id="main">
+        <div class="row">
+          <h1 *ngIf="isPatient()">Mon Dossier Medical</h1>
+          <h1 *ngIf="isDoctor()">Dossier Medical</h1>
+           <em>{{dm.description}}  </em>
+        </div>
+        <div class="row">
+
+          <div class="col-7">
+            <div class="row"><h3>Consultations</h3></div>
+            <div class="row">
+              <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Consultation </th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let c of cs">
+                      <td>Consultation 00{{c.id}}</td>
+                      <td>{{c.createDate}}</td>
+                      <td><a class="nav-link" routerLinkActive="active"
+                      routerLink="/dm/consultation/{{c.id}}/3/intero"><i class="bi bi-eye-fill fa-5x"></i></a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            </div>
+
+            <div class="col-5">
+              <div class="row" id="bps" (click)="goToBilans()">
+                <div class="row"><h3>Bilans</h3></div>
+                  <div class="row" id="b">
+                    <div class="col-2">
+                      <img src="../assets/img/bilan.png" class="icons" alt="bilan picture">
+                    </div>
+                    <div class="col-10">
+                      <p>Conulter les bilans du patient</p>
+                      <p>Graphe de suivie des parametres importants</p>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                <div class="row" id="iot" (click)="goToIot()">
+                  <div class="row"><h3>Suivie Glycemie</h3></div>
+                    <div class="row" id="b">
+                      <div class="col-2">
+                        <img src="../assets/img/glucometre.png" class="icons" alt="glucometre picture">
+                      </div>
+                      <div class="col-10">Graphe de suivie de la Glycemie du patient</div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        <div class="row" id="ant">
+          <div class="row"><h3 class="text-center" >Antecedants</h3></div>
+            <div class="row">
+
+              <div class="col-3">
+                <div class="row"><strong class="text-center t">Familiaux</strong></div>
+                <div class="row">
+                  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table">
+
+                      <tbody>
+                        <tr *ngFor="let f of fm">
+                          <td>{{f.nom}}  <em>{{f.remarque}}</em></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <div class="row"><strong class="text-center t">Medicaux</strong></div>
+                <div class="row">
+                  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table">
+
+
+                      <tbody>
+                        <tr *ngFor="let m of md">
+                          <td>{{m.nom}}  <em>{{m.remarque}}</em></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <div class="row"><strong class="text-center t">Chirurgicaux</strong></div>
+                <div class="row">
+                  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table">
+
+                      <tbody>
+                        <tr *ngFor="let c of ch">
+                          <td>{{c.nom}}  <em>{{c.remarque}}</em></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <div class="row"><strong class="text-center t">Habitudes</strong></div>
+                <div class="row">
+                  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table">
+
+                      <tbody>
+                        <tr *ngFor="let h of ha">
+                          <td>{{h.nom}}  <em>{{h.remarque}}</em></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

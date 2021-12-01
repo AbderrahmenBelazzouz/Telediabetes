@@ -1,0 +1,36 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <button type="button" class="btn btn-success btn-lg btn-block" (click)="addGlytoPatient()">Push New Records</button>
+      <div>
+        <canvas baseChart
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [chartType]="lineChartType"
+          [plugins]="lineChartPlugins">
+        </canvas>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <div *ngFor="let da of valuesDateGly">
+          <p class="dat">{{da.date.substring(0,10)}}</p>
+          <div *ngFor="let g of da.values">
+            <p>
+              <strong *ngIf="g.value >= 70 &&  g.value <= 121">{{g.value}}</strong>
+              <strong *ngIf="g.value < 70 ||  g.value > 121" class="danger">{{g.value}}</strong>
+              <em>mg/dl</em>
+              <em class="time">{{g.dateTimeEnregistrement.substring(11,16)}}</em>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+

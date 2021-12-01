@@ -1,0 +1,90 @@
+ <!--hba1c-->
+  <div *ngIf="!isTerminer() && isHba1c()" class="col-12" id="bp">
+    <div class="paper">
+      <div id="title">{{hba1c.titre}} N°0{{hba1c.id}}</div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">Glycémie à jeun : </div>
+         <div class="col-2 col-sm-6">{{hba1c.glycemie_a_jeun}} g/l</div>
+      </div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">Hemoglobine Glyquee (HBA1c) : </div>
+        <div class="col-2 col-sm-6">{{hba1c.hemoglobine_glyquee}} %</div>
+      </div>
+    </div>
+  </div>
+
+<!-- lipidique-->
+  <div *ngIf="!isTerminer() && isLipidique()" class="col-12" id="bp">
+    <div class="paper">
+      <div id="title">{{lipid.titre}} N°0{{lipid.id}}</div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">Créatinine : </div>
+         <div class="col-2 col-sm-6">{{lipid.creatinine}} mg/l</div>
+      </div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">Triglycerides : </div>
+         <div class="col-2 col-sm-6">{{lipid.triglycerides}} g/l</div>
+      </div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">Cholesterole Total : </div>
+         <div class="col-2 col-sm-6">{{lipid.cholesterolTotal}} mg/l</div>
+      </div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">HDL Cholesterol : </div>
+        <div class="col-2 col-sm-6">{{lipid.hdlCholesterol}} g/l</div>
+      </div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">LDL Total : </div>
+        <div class="col-2 col-sm-6">{{lipid.ldlCholesterol}} g/l</div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- renal-->
+  <div *ngIf="!isTerminer() && isRenal()" class="col-12" id="bp">
+    <div class="paper">
+      <div id="title">{{renal.titre}} N°0{{renal.id}}</div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">Ph : </div>
+         <div class="col-2 col-sm-6">{{renal.ph}}</div>
+      </div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">Densité : </div>
+         <div class="col-2 col-sm-6">{{renal.densite}}</div>
+      </div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">Glucose : </div>
+         <div class="col-2 col-sm-6">{{renal.glucose}} mg/dl</div>
+      </div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">Corps cétoniques : </div>
+         <div class="col-2 col-sm-6">{{renal.corps_cetoniques}}</div>
+      </div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">Protéines : </div>
+         <div class="col-2 col-sm-6">{{renal.proteines}} mg/dl</div>
+      </div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">Sang : </div>
+         <div class="col-2 col-sm-6">{{renal.sang}}</div>
+      </div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">Leucocytes : </div>
+         <div class="col-2 col-sm-6">{{ renal.leucocytes}}</div>
+      </div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">Nitrites : </div>
+         <div class="col-2 col-sm-6">{{renal.nitrites}}</div>
+      </div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">Urobilinogène : </div>
+        <div class="col-2 col-sm-6">{{renal.urobilinogene}}</div>
+      </div>
+      <div class="row" id="at">
+        <div class="col-5 col-sm-6" id="a">Bilirubine : </div>
+        <div class="col-2 col-sm-6">{{renal.bilirubine}}</div>
+      </div>
+    </div>
+  </div>
+

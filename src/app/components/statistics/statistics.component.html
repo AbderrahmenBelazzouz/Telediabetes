@@ -1,0 +1,101 @@
+
+<div class="container" *ngIf="user.role ==='ROLE_MEDECIN'">
+  <div class="row">
+      <div class="col-2" id="side">
+        <app-sidebar></app-sidebar>
+      </div>
+
+      <div class="col-10" id="main">
+        <div class="row"><h1>Statistiques</h1></div>
+
+        <div class="row">
+
+           <div class="row box">
+                  <div class="col-6" style="margin:0px">
+                    <div class="title">Consultations</div>
+                      <div class="row filter">
+                        <div class="col-2">Filter</div>
+                        <div class="col-7">
+                          <!-- DropDownList -->
+                          <select [(ngModel)]="timeFilter" name="tf" class="form-control"
+                            required
+                            (change)="onChange($event.target.value)">
+                            <option disabled value="" class="text-primary font-weight-bolder">
+                              --- Select filter ---</option>
+                            <option>JOURS</option>
+                            <option>MOIS</option>
+                            <option>ANNEE</option>
+                          </select>
+                        </div>
+                      </div>
+                      <!-- cosultations-->
+                      <div style="display: block">
+                        <canvas baseChart height="100"
+                          [datasets]="barChartData"
+                          [labels]="barChartLabels"
+                          [options]="barChartOptions"
+                          [plugins]="barChartPlugins"
+                          [legend]="barChartLegend"
+                          [chartType]="barChartType">
+                        </canvas>
+                      </div>
+                    </div>
+
+                      <div class="col-6" style="margin:0px">
+                        <div class="title">Type De Diabete</div>
+                        <!--piechar type diabete-->
+                        <canvas baseChart
+                          [data]="pieChartDataType"
+                          [labels]="pieChartLabelsType"
+                          [chartType]="pieChartType"
+                          [options]="pieChartOptions"
+                          [plugins]="pieChartPlugins"
+                          [colors]="pieChartColors"
+                          [legend]="pieChartLegend">
+                        </canvas>
+                      </div>
+
+                  </div>
+                </div>
+
+
+
+
+            <div class="row">
+
+              <div class="row box">
+
+                <div class="col-6" style="margin:0px">
+                  <div class="title">Sexe</div>
+                  <!--piechar sexe-->
+                  <canvas baseChart
+                    [data]="pieChartData"
+                    [labels]="pieChartLabels"
+                    [chartType]="pieChartType"
+                    [options]="pieChartOptions"
+                    [plugins]="pieChartPlugins"
+                    [colors]="pieChartColors"
+                    [legend]="pieChartLegend">
+                  </canvas>
+                </div>
+
+                <div class="col-6" style="margin:0px">
+                  <div class="title">Age</div>
+                  <!--piechar age-->
+                  <canvas baseChart
+                    [data]="pieChartDataAge"
+                    [labels]="pieChartLabelsAge"
+                    [chartType]="pieChartType"
+                    [options]="pieChartOptions"
+                    [plugins]="pieChartPlugins"
+                    [colors]="pieChartColors"
+                    [legend]="pieChartLegend">
+                  </canvas>
+                </div>
+
+              </div>
+            </div>
+
+    </div>
+  </div>
+</div>

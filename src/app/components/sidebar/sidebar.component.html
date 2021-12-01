@@ -1,0 +1,47 @@
+
+  <div class="row">
+    <div class="text-center">
+      <img src="../assets/img/profile.png" class="rounded" alt="profile picture">
+    </div>
+  </div>
+  <div class="row"><h2>{{user.username}}</h2></div>
+  <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+    <a  class="nav-link"  data-toggle="pill" role="tab" aria-controls="v-pills-home" aria-selected="true"
+    routerLinkActive="active"  (click)="getProfile()">Profile</a>
+
+    <a class="nav-link"  data-toggle="pill" role="tab" aria-controls="v-pills-profile" aria-selected="false"
+    routerLinkActive="active" routerLink="/medecin/patients" *ngIf="isDoctor()">Patients</a>
+
+    <a class="nav-link"  data-toggle="pill" role="tab" aria-controls="v-pills-messages" aria-selected="false"
+    routerLinkActive="active" routerLink="/patient/dashboard" *ngIf="isPatient()" >
+    Ma Glycemie </a>
+
+    <a class="nav-link"  data-toggle="pill" role="tab" aria-controls="v-pills-messages" aria-selected="false"
+    routerLinkActive="active" routerLink="/patient/{{user.id}}/dossierMedical" *ngIf="isPatient()" >Mon Dossier Medical </a>
+
+      <a class="nav-link" data-toggle="pill" role="tab" aria-controls="v-pills-profile" aria-selected="false"
+      routerLinkActive="active" routerLink="/register" *ngIf="isAdmin()">Register</a>
+
+      <a class="nav-link" data-toggle="pill" role="tab" aria-controls="v-pills-messages" aria-selected="false"
+      routerLinkActive="active" routerLink="/users" *ngIf="isAdmin()">Account Management </a>
+
+      <a class="nav-link" data-toggle="pill" role="tab" aria-controls="v-pills-messages" aria-selected="false"
+      routerLinkActive="active" routerLink="/aideSoignant/patients" *ngIf="isAideSoignant()">Patients </a>
+
+      <a class="nav-link" data-toggle="pill" role="tab" aria-controls="v-pills-messages" aria-selected="false"
+      routerLinkActive="active" routerLink="/aideSoignant/dashboard" *ngIf="isAideSoignant() || isDoctor() ">Consultations </a>
+
+      <a class="nav-link" data-toggle="pill" role="tab" aria-controls="v-pills-messages" aria-selected="false"
+      routerLinkActive="active" routerLink="/aideSoignant/mp" *ngIf="isAideSoignant()">Medecin/Patient </a>
+
+      <a class="nav-link"  data-toggle="pill" role="tab" aria-controls="v-pills-profile" aria-selected="false"
+    routerLinkActive="active" routerLink="/medecin/statistique" *ngIf="isDoctor()">Statistiques</a>
+
+
+
+    <a class="nav-link"  data-toggle="pill" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+
+    <a class="nav-link"  data-toggle="pill" role="tab" aria-controls="v-pills-settings" aria-selected="false"
+     routerLinkActive="active" routerLink="/logout">Log out</a>
+  </div>
+

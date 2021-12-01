@@ -1,0 +1,20 @@
+.bi-eye-fill{
+  font-size: 18px;
+  color: darkcyan;
+}
+.bi-eye-fill:hover{
+  color:dodgerblue;
+}
+tr:hover {
+  border-color:dodgerblue;
+  font-weight: bold;
+}
+i{
+  font-size: 18px;
+  color:forestgreen;
+  padding: 10px;
+}
+i:hover{
+  cursor: pointer;
+  color:chartreuse;
+}

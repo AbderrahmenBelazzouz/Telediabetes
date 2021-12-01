@@ -1,0 +1,25 @@
+button{
+  margin-left: 5px;
+}
+.rounded{
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+i{
+  padding: 5px;
+}
+.bi-pencil-square{
+  color: green;
+}
+.bi-pencil-square:hover{
+  font-size: 18px;
+  color: chartreuse;
+}
+.bi-trash-fill{
+  color: crimson;
+}
+.bi-trash-fill:hover{
+  color:red;
+}

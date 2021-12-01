@@ -1,0 +1,17 @@
+<div class="row">
+  <nav class="navbar navbar-expand-lg">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+          <a class="nav-link" routerLinkActive="active" routerLink="/dm/consultation/{{c.id}}/3/intero">Interrogatoir</a>
+
+          <a class="nav-link" routerLinkActive="active" routerLink="/dm/consultation/{{c.id}}/31/ec" >Examen Clinique</a>
+
+          <a *ngIf="isDoctor()" class="nav-link" routerLinkActive="active" routerLink="/dm/consultation/{{c.id}}/32/bp" >Bilan Paraclinique</a>
+
+
+          <a class="nav-link" routerLinkActive="active" routerLink="/dm/consultation/{{c.id}}/33/pp">Papiers</a>
+
+      </ul>
+    </div>
+ </nav>
+</div>

@@ -1,0 +1,18 @@
+#title{
+  text-align: center;
+  font-weight: 600;
+  font-size: x-large;
+  margin-bottom: 20px;
+  color: dodgerblue;
+}
+#a{
+  font-weight: 500;
+}
+
+#bp, .paper{
+  border: 2px solid black;
+  padding: 10px;
+}
+#at{
+  padding: 10px;
+}

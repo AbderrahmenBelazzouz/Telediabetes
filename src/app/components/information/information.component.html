@@ -1,0 +1,41 @@
+<div class="container" *ngIf="user.role ==='ROLE_MEDECIN'">
+  <div class="row">
+    <div class="row">
+      <div class="col-2" id="side">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-9" id="main">
+        <div class="row">
+          <div class="col-12" id="nav">
+            <app-navdm></app-navdm>
+        </div>
+        <div class="col-12" id="content">
+          <div class="row">
+            <div class="col-3" id="t">CIN</div>
+            <div class="col-3">{{p.CIN}}</div>
+
+          </div>
+          <div class="row">
+            <div class="col-3" id="t">Nom</div>
+            <div class="col-3">{{p.nom}}</div>
+            <div class="col-2 offset-1" id="t">Prenom</div>
+            <div class="col-3">{{p.prenom}}</div>
+          </div>
+          <div class="row">
+            <div class="col-3" id="t">Date Naissance</div>
+            <div class="col-3">{{p.dateNaissance| date:'yyyy-MM-dd' }}</div>
+            <div class="col-2 offset-1" id="t">Sexe</div>
+            <div class="col-3">{{p.sexe}}</div>
+          </div>
+          <div class="row" id="cordonnees">
+            <div class="col-3" id="t">Telephone</div>
+            <div class="col-3">{{p.telephone}}</div>
+            <div class="col-2 offset-1" id="t">Adresse</div>
+            <div class="col-3">{{p.adresse}}</div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,481 @@
+<div class="container" *ngIf="isDoctor() || isPatient()">
+  <div class="row">
+    <div class="row">
+      <div class="col-3" id="side">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-8" id="main">
+        <div class="row">
+          <div class="col-12" id="nav">
+            <app-navdm (messageEvent)="recieveMsg($event)"></app-navdm>
+            <app-ec-nav></app-ec-nav>
+            <app-ppnav (notify)="onNotified($event)"></app-ppnav>
+          </div>
+        </div>
+
+        <div class="col-12" id="content">
+
+          <div id="btns" class="row">
+            <button *ngIf="isDoctor()" [disabled]="certRegistred && isCertificat() || ordRegistred && isOrd() || oriRegistred && isOriantation()"
+             class="btn btn-success" (click)="savepp()"><i class="bi bi-save-fill"></i> Enregistrer</button>
+            <button class="btn btn-warning" onClick="window.print();"><i class="bi bi-printer-fill"></i>Imprimer</button>
+          </div>
+
+          <!-- certificat -->
+          <div class="row"  *ngIf="isCertificat()">
+            <div class="col-6">
+              <div id="t">Cause</div>
+              <div><textarea [disabled]="certRegistred || isPatient()" [(ngModel)]="certificat.cause" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"></textarea></div>
+            </div>
+            <div class="col-6">
+              <div id="t">Recommandation</div>
+              <div><textarea  [disabled]="certRegistred || isPatient()" [(ngModel)]="certificat.recommandation" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"></textarea></div>
+            </div>
+          </div>
+
+          <!-- ordonnance -->
+          <div *ngIf="isOrd()">
+
+            <!--insuline-->
+            <div class="row o">
+              <div id="t">Insuline Par Voie Sous-Cutane</div>
+              <div>
+                <table class="table">
+                  <thead>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th scope="col">Matin</th>
+                    <th scope="col">Midi</th>
+                    <th scope="col">Soir</th>
+                    <th scope="col">Coucher</th>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td scope="col">Rapide</td>
+                      <td></td>
+                      <td scope="col">Dosage</td>
+                      <td>
+                        <div class="row">
+                          <div  class="col-8">
+                            <input  [disabled]="ordRegistred || isPatient()"  [(ngModel)]="doses.matinR" type="number" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                          </div>
+                          <div class="col-1 unit">
+                            UI
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="row">
+                          <div class="col-8">
+                            <input  [disabled]="ordRegistred || isPatient()" [(ngModel)]="doses.midiR" type="number" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                          </div>
+                          <div class="col-1 unit">
+                            UI
+                          </div>
+                        </div>
+                      <td>
+                        <div class="row">
+                          <div class="col-8">
+                            <input  [disabled]="ordRegistred || isPatient()" [(ngModel)]="doses.soirR" type="number" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                          </div>
+                          <div class="col-1 unit">
+                            UI
+                          </div>
+                        </div>
+                      <td>
+                        <div class="row">
+                          <div class="col-8">
+                            <input  [disabled]="ordRegistred || isPatient()" [(ngModel)]="doses.coucherR" type="number" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                          </div>
+                          <div class="col-1 unit">
+                            UI
+                          </div>
+                        </div>
+                    </tr>
+                    <tr>
+                      <td scope="col">Lente</td>
+                      <td></td>
+                      <td scope="col">Dosage</td>
+                      <td>
+                        <div class="row">
+                          <div class="col-8">
+                            <input  [disabled]="ordRegistred || isPatient()" [(ngModel)]="doses.matinL" type="number" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                          </div>
+                          <div class="col-1 unit">
+                            UI
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="row">
+                          <div class="col-8">
+                            <input  [disabled]="ordRegistred || isPatient()" [(ngModel)]="doses.midiL" type="number" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                          </div>
+                          <div class="col-1 unit">
+                            UI
+                          </div>
+                        </div>
+                      <td>
+                        <div class="row">
+                          <div class="col-8">
+                            <input  [disabled]="ordRegistred || isPatient()" [(ngModel)]="doses.soirL" type="number" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                          </div>
+                          <div class="col-1 unit">
+                            UI
+                          </div>
+                        </div>
+                      <td>
+                        <div class="row">
+                          <div class="col-8">
+                            <input  [disabled]="ordRegistred || isPatient()" [(ngModel)]="doses.coucherL" type="number" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                          </div>
+                          <div class="col-1 unit">
+                            UI
+                          </div>
+                        </div>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!--aiguille-->
+            <div class="row o">
+              <div id="t">Aiguille Pour Stylo a Insulin</div>
+              <div class="col-3" id="tt">Aiguilles</div>
+              <div class="col-2">
+                <input  [disabled]="ordRegistred || isPatient()" [(ngModel)]="ord.aiguillesJ" type="number" placeholder="/jour" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              </div>
+            </div>
+
+            <!--auto surveillance-->
+            <div class="row o">
+              <div id="t">AutoSurvaillance Glycemie</div>
+              <div class="col-3" id="tt">Lancettes</div>
+              <div class="col-2">
+                <input [disabled]="ordRegistred || isPatient()" [(ngModel)]="ord.lancettesJ" type="number" placeholder="/jour" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              </div>
+
+              <div class="col-3 offset-2" id="tt">Bandlettes</div>
+              <div class="col-2">
+                <input [disabled]="ordRegistred || isPatient()" [(ngModel)]="ord.bandelettesJ" type="number" placeholder="/jour" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+              </div>
+            </div>
+
+            <div class="row o">
+              <div id="t">Autre Medications</div>
+              <div><textarea  [disabled]="ordRegistred || isPatient()" [(ngModel)]="ord.autre"  type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"></textarea></div>
+            </div>
+
+          </div>
+
+
+           <!-- Orientation -->
+           <div class="row"  *ngIf="isOriantation()">
+            <div class="o">
+              <div id="t">Cause</div>
+              <div><textarea [disabled]="oriRegistred || isPatient()" [(ngModel)]="ori.cause" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"></textarea></div>
+            </div>
+            <div class="o">
+              <div id="t">etatPatient</div>
+              <div><textarea  [disabled]="oriRegistred || isPatient()" [(ngModel)]="ori.etatPatient" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"></textarea></div>
+            </div>
+          </div>
+
+
+
+        </div>
+        </div>
+     </div>
+  </div>
+</div>
+
+
+
+
+<!--  print template-->
+<div class="print">
+
+  <style type="text/css">@media print{.form-section{display:inline!important}.form-pagebreak{display:none!important}.form-section-closed{height:auto!important}.page-section{position:initial!important}}</style>
+  <link type="text/css" rel="stylesheet" href="https://cdn01.jotfor.ms/themes/CSS/5e6b428acc8c4e222d1beb91.css?themeRevisionID=5f7ed99c2c2c7240ba580251"/>
+  <link type="text/css" rel="stylesheet" href="https://cdn02.jotfor.ms/css/styles/payment/payment_styles.css?3.3.27216" />
+  <link type="text/css" rel="stylesheet" href="https://cdn03.jotfor.ms/css/styles/payment/payment_feature.css?3.3.27216" />
+
+
+  <form class="jotform-form"   id="212314636856559" accept-charset="utf-8" autocomplete="on">
+
+    <div role="main" class="form-all">
+      <style>
+        .form-all:before { background: none;}
+      </style>
+
+
+      <!-- certficat medical-->
+      <ul class="form-section page-section" *ngIf="isCertificat()">
+
+        <li id="cid_1" class="form-input-wide" data-type="control_head">
+          <div class="form-header-group  header-large">
+            <div class="header-text httar htvam">
+              <h1 id="header_1" class="form-header" data-component="header">
+                CERTIFICAT MEDICAL
+              </h1>
+            </div>
+          </div>
+        </li>
+
+        <li class="form-line" data-type="control_inline" id="id_76">
+          <div id="cid_76" class="form-input-wide" data-layout="full">
+            <div id="FITB_76" class="FITB formRender">
+
+                <div class="row">
+                  <div id="first">
+                    <p>Sidi Bel Abbès le <em>{{dateOrd}}</em></p>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <p><strong>Je soussigné ,Dr:</strong> {{certificat.doctor}}</p>
+                </div>
+                <div class="row">
+                  <p><strong>Certifie que l(e/a) Nommé(e)</strong> {{p.nom}}  {{p.prenom}}</p>
+                </div>
+                <div class="row">
+                  <p><strong>Né le</strong> ...{{dateP}} à ...</p>
+                </div>
+                <div class="row">
+                    <p><strong>Est atteint</strong> {{certificat.cause}} ...</p>
+                </div>
+                <div class="row">
+                  <p><strong>Nécessite</strong> {{certificat.recommandation}}...</p>
+                </div>
+
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="row end">
+            <p><strong>Nom et Prénom du Medecin: </strong></p>
+            <p>Dr.{{certificat.doctor}}</p>
+          </div>
+        </li>
+
+      </ul>
+
+        <!-- ordonnance -->
+          <ul class="form-section page-section" *ngIf="isOrd()">
+
+            <li id="cid_1" class="form-input-wide" data-type="control_head">
+              <div class="form-header-group  header-large">
+                <div class="header-text httar htvam">
+                  <h1 id="header_1" class="form-header" data-component="header">
+                    ORDONNANCE
+                  </h1>
+                </div>
+              </div>
+            </li>
+
+            <li class="form-line" data-type="control_inline" id="id_76">
+              <div id="cid_76" class="form-input-wide" data-layout="full">
+                <div id="FITB_76" class="FITB formRender">
+
+                    <div class="row">
+                      <div class="col-4"><strong>Patient :</strong> {{p.nom}} {{p.prenom}}</div>
+                      <div class="col-8" id="first">
+                        <p>Sidi Bel Abbès le <em>{{dateOrd}}</em></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </li>
+
+                <li>
+                   <!--insuline-->
+            <div class="row o">
+              <div id="t">Insuline Par Voie Sous-Cutane</div>
+              <div>
+                <table class="table">
+                  <thead>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th scope="col">Matin</th>
+                    <th scope="col">Midi</th>
+                    <th scope="col">Soir</th>
+                    <th scope="col">Coucher</th>
+                  </thead>
+                  <tbody *ngIf="ord.doses">
+                    <tr>
+                      <td scope="col">Rapide</td>
+                      <td></td>
+                      <td scope="col">Dosage</td>
+                      <td>
+                        <div class="row">
+                          <div >
+                            <p class="form-control">{{doses.matinR}} ui</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="row">
+                          <div >
+                            <p class="form-control">{{doses.midiR}} ui</p>
+                          </div>
+                        </div>
+                      <td>
+                        <div class="row">
+                          <div >
+                            <p class="form-control">{{doses.soirR}} ui</p>
+                          </div>
+                        </div>
+                      <td>
+                        <div class="row">
+                          <div >
+                            <p class="form-control">{{doses.coucherR}} ui</p>
+                          </div>
+                        </div>
+                    </tr>
+                    <tr>
+                      <td scope="col">Lente</td>
+                      <td></td>
+                      <td scope="col">Dosage</td>
+                      <td>
+                        <div class="row">
+                          <div >
+                            <p class="form-control">{{doses.matinL}} ui</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="row">
+                          <div >
+                            <p class="form-control">{{doses.midiL}} ui</p>
+                          </div>
+                        </div>
+                      <td>
+                        <div class="row">
+                          <div >
+                            <p class="form-control">{{doses.soirL}} ui</p>
+                          </div>
+                        </div>
+                      <td>
+                        <div class="row">
+                          <div >
+                            <p class="form-control">{{doses.coucherL}} ui</p>
+                           </div>
+                        </div>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!--aiguille-->
+            <div class="row o">
+              <div id="t">Aiguille Pour Stylo a Insulin</div>
+              <div class="col-3" id="tt">Aiguilles</div>
+              <div class="col-2">
+                <p class="form-control">{{ord.aiguillesJ}} /jour</p>
+              </div>
+            </div>
+
+            <!--auto surveillance-->
+            <div class="row o">
+              <div id="t">AutoSurvaillance Glycemie</div>
+              <div class="col-3" id="tt">Lancettes</div>
+              <div class="col-2">
+                <p class="form-control">{{ord.lancettesJ}} /jour</p>
+              </div>
+
+              <div class="col-3 offset-2" id="tt">Bandlettes</div>
+              <div class="col-2">
+                <p class="form-control">{{ord.bandelettesJ}} /jour</p>
+              </div>
+            </div>
+
+
+                  <div class="row">
+                    <div id="t">Autre Medications</div>
+                    <div><textarea class="form-control">{{ord.autre}}</textarea></div>
+                  </div>
+
+                </li>
+
+                <li>
+                  <div class="row">
+                    <div id="med" class="col-4 offset-8">
+                      <strong>Signature et cachet: </strong>
+                      <div id="doctor">Dr.{{ord.doctor}}</div>
+                    </div>
+                  </div>
+                </li>
+          </ul>
+
+
+          <!-- orientation -->
+      <ul class="form-section page-section" *ngIf="isOriantation()">
+
+        <li id="cid_1" class="form-input-wide" data-type="control_head">
+          <div class="form-header-group  header-large">
+            <div class="header-text httar htvam">
+              <h1 class="form-header">
+                ORIENTATION
+              </h1>
+            </div>
+          </div>
+        </li>
+
+        <li class="form-line" data-type="control_inline" id="id_76">
+          <div id="cid_76" class="form-input-wide" data-layout="full">
+            <div id="FITB_76" class="FITB formRender">
+
+                <div class="row">
+                  <div id="first">
+                    <p>Sidi Bel Abbès le <em>{{dateOrd}}</em></p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <p>Permettez moi de vous adresser le patient
+                    <strong>{{p.nom}}  {{p.prenom}}</strong>
+                     agé de {{ori.agePatient}} ans,
+                  </p>
+                </div>
+                <div class="row">
+                    <p><strong>suivi à notre nivau pour </strong> {{ori.cause}} ...</p>
+                </div>
+                <div class="row">
+                  <p><strong>qui présente actuellement </strong> {{ori.etatPatient}}...</p>
+                </div>
+                <div class="row">
+                  <p>Je vous le confie pour une prise en charge <strong>spécialisée</strong></p>
+                </div>
+                <div *ngIf="ants?.length > 0">
+                  <!-- antecedants !!-->
+                  <h5>On note comme ATCDs :</h5>
+                  <ul class="un">
+                  <li *ngFor="let ant of ants">{{ant.nom}} {{ant.remarque}}</li>
+                  </ul>
+                </div>
+
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div class="row">
+            <div id="med" class="col-3 offset-9">
+              <strong>Cordialement: </strong>
+              <div id="doctor">Dr.{{ori.doctor}}</div>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+
+
+    </div>
+  </form>
+</div>
+

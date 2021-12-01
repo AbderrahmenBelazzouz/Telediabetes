@@ -1,0 +1,16 @@
+<div class="container" *ngIf="user.role ==='ROLE_PATIENT'">
+  <div class="row">
+    <div class="row">
+      <div class="col-2" id="side">
+       <app-sidebar></app-sidebar>
+       </div>
+      <div class="col-9" id="main">
+        <div class="row"><h1>My Glycemie</h1></div>
+        <div class="row">
+          <app-iot></app-iot>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

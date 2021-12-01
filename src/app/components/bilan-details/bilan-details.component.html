@@ -1,0 +1,102 @@
+
+<div class="container" *ngIf="isDoctor() || isPatient()">
+  <div class="row">
+    <div class="row">
+      <div class="col-2" id="side">
+      <app-sidebar></app-sidebar>
+    </div>
+      <div class="col-9" id="main">
+        <div *ngIf="type==='hba1c'" class="row">
+          <canvas baseChart height="70"
+            [datasets]="lineChartDatahba1c"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColorshba1c"
+            [chartType]="lineChartType"
+            [plugins]="lineChartPlugins">
+          </canvas>
+        </div>
+        <div *ngIf="type==='lipid'" class="row">
+          <canvas baseChart height="70"
+            [datasets]="lineChartDatalipid"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColorslipid"
+            [chartType]="lineChartType"
+            [plugins]="lineChartPlugins">
+          </canvas>
+        </div>
+        <div class="row"><h1>Bilans Details</h1> <em><!-- hba1c/lopid/renal-->  </em></div>
+
+        <!-- graph -->
+
+        <div class="row">
+          <div class="col-7">
+            <div class="row"><h3>List des bilans</h3></div>
+
+            <div class="row">
+              <nav class="navbar navbar-expand-lg">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                      <a class="nav-link" routerLinkActive="active" routerLink="/patient/{{id}}/dossierMedical/bpDetails"
+                       (click)="navigat('hba1c')">Hba1c</a>
+
+                      <a class="nav-link" routerLinkActive="active" routerLink="/patient/{{id}}/dossierMedical/bpDetails"
+                      (click)="navigat('lipid')">Bilan Lipidique</a>
+
+                      <a  class="nav-link" routerLinkActive="active" routerLink="/patient/{{id}}/dossierMedical/bpDetails"
+                      (click)="navigat('renal')">Bilan Rénal</a>
+                  </ul>
+                </div>
+             </nav>
+            </div>
+
+            <div class="row">
+              <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Bilan </th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="type==='hba1c'">
+                    <tr *ngFor="let hba1c of bpHba1cs">
+                      <td>{{hba1c.titre}} 0{{hba1c.id}}</td>
+                      <td>{{hba1c.createDate}}</td>
+                      <td><a (click)="getBP(hba1c.id,'hba1c')" class="nav-link"><i class="bi bi-eye-fill fa-5x"></i></a></td>
+                    </tr>
+                  </tbody>
+                  <tbody *ngIf="type==='lipid'">
+                    <tr *ngFor="let lipid of bplipids">
+                      <td>{{lipid.titre}} 0{{lipid.id}}</td>
+                      <td>{{lipid.createDate}}</td>
+                      <td><a (click)="getBP(lipid.id,'lipid')" class="nav-link"><i class="bi bi-eye-fill fa-5x"></i></a></td>
+                    </tr>
+                  </tbody>
+                  <tbody *ngIf="type==='renal'">
+                    <tr *ngFor="let renal of bprenals">
+                      <td>{{renal.titre}} 0{{renal.id}}</td>
+                      <td>{{renal.createDate}}</td>
+                      <td><a (click)="getBP(renal.id,'renal')" class="nav-link"><i class="bi bi-eye-fill fa-5x"></i></a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            </div>
+
+
+
+
+            <div class="col-5" id="bps">
+              <!--pass data to the child-->
+                <app-bilan-paper [hba1c]="hba1c" [lipid]="lipid" [renal]="renal" [type]="type"></app-bilan-paper>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

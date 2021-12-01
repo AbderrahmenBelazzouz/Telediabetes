@@ -1,0 +1,122 @@
+
+<div class="container" *ngIf="currentUser.role ==='ROLE_ADMIN'">
+  <div class="row">
+    <div class="row">
+      <div class="col-2" id="side">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-9" id="main">
+        <div class="row"><h1>Register New User</h1></div>
+        <div class="row">
+          <form #registerForm="ngForm" novalidate="">
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" [(ngModel)]="user.username" id="username" class="form-control"
+              placeholder="username" pattern="[a-zA-Z]{1,}" maxlength="32" minlength="4" name="un" #un="ngModel" required>
+                  <div *ngIf="un.invalid && (un.dirty || un.touched)" class="alert">
+
+                    <div *ngIf="un.errors?.required">
+                      UserName is required.
+                    </div>
+                    <div *ngIf="un.errors?.minlength">
+                      UserName must be at least 4 characters long.
+                    </div>
+                    <div *ngIf="un.errors?.maxlength">
+                      UserName must be at most 32 characters long.
+                    </div>
+                    <div *ngIf="un.errors?.pattern">
+                      UserName must not be a number.
+                    </div>
+                  </div>
+            </div>
+
+
+
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" [(ngModel)]="user.password" id="password" class="form-control"
+              maxlength="25" minlength="8" placeholder="password" name="pass" #pass="ngModel" required >
+
+              <div *ngIf="pass.invalid && (pass.dirty || pass.touched)"class="alert">
+
+                <div *ngIf="pass.errors?.required">
+                  Password is required.
+                </div>
+                <div *ngIf="pass.errors?.minlength">
+                  Password must be at least 8 characters long.
+                </div>
+                <div *ngIf="pass.errors?.maxlength">
+                  Password must be at most 25 characters long.
+                </div>
+
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Telephone</label>
+              <input type="text" [(ngModel)]="user.telephone" placeholder="07..." name="phone" class="form-control" id="phone"
+               pattern="[0][7|6|5][0-9]{8}" name="ph" #ph="ngModel" required>
+                  <div *ngIf="ph.invalid && (ph.dirty || ph.touched)" class="alert">
+
+                    <div *ngIf="ph.errors?.required">
+                      phone Number is required.
+                    </div>
+                    <div *ngIf="ph.errors?.pattern">
+                      Please Enter a valid Phone Number.
+                    </div>
+                  </div>
+            </div>
+
+            <div class="form-group">
+              <label for="role">Role</label>
+              <!-- DropDownList -->
+              <select class="form-control" name="role" [(ngModel)]="user.role"
+              #role="ngModel"
+              [ngClass]="{ 'is-invalid': role.invalid }" required>
+              <option value="" disabled class="text-primary font-weight-bolder">
+                --- Select Role ---
+              </option>
+              <option [value]='admin'>ADMIN</option>
+              <option [value]='med'>MEDECIN</option>
+              <option [value]='ais'>AIDE_SOIGNANT</option>
+              <option [value]='pat'>PATIENT</option>
+            </select>
+
+            <!-- Required Validation Message -->
+            <div *ngIf="role.invalid && (role.dirty || role.touched)" class="alert">
+              <div *ngIf="role.errors.required">Role is Required</div>
+            </div>
+          </div>
+
+            <div class="form-group">
+              <label for="state">State</label>
+              <!-- DropDownList -->
+              <select class="form-control" name="st" [(ngModel)]="user.state"
+              #st="ngModel"
+              [ngClass]="{ 'is-invalid': st.invalid }" required>
+              <option value="" disabled class="text-primary font-weight-bolder">
+                --- Select State ---
+              </option>
+              <option [value]="a">ACTIVE</option>
+              <option [value]="ina">INACTIVE</option>
+            </select>
+
+            <!-- Required Validation Message -->
+            <div *ngIf="st.invalid && (st.dirty || st.touched)" class="alert">
+              <div *ngIf="st.errors.required">State is Required</div>
+            </div>
+          </div>
+
+            <button [disabled]="registerForm.form.invalid" class="btn btn-success" (click)="registerUser()">Register</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

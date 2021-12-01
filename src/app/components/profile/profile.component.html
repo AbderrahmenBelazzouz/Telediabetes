@@ -1,0 +1,71 @@
+
+<div class="container" *ngIf="user.role ==='ROLE_PATIENT'">
+  <div class="row">
+    <div class="row">
+      <div class="col-2" id="side">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-9" id="main">
+        <div class="row"><h1>My Profile</h1></div>
+        <div class="row">
+          <form>
+            <div class="form-group">
+             </div>
+          </form>
+          <form>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="inputName">Nom:</label>
+                <input disabled type="name" [(ngModel)]="patient.nom" name="nom" class="form-control" id="inputName">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputPrenom">Prenom</label>
+                <input disabled type="name" [(ngModel)]="patient.prenom" name="prenom" class="form-control" id="inputPrenom">
+
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputSexe">Sexe</label>
+                <input disabled type="text" [(ngModel)]="patient.sexe" name="sexe" class="form-control" id="inputSexe">
+
+              </div>
+
+            <div class="form-group col-md-4">
+              <label for="inputtype">Type de Diabete</label>
+              <input disabled type="text" [(ngModel)]="patient.type" name="type" class="form-control" id="inputtype">
+
+            </div>
+
+              <div class="form-group col-md-6">
+                <label for="inputDB">Date Naissance</label>
+                <input disabled type="date" [(ngModel)]="patient.dateNaissance" name="dateNaissance" class="form-control" id="inputDB">
+
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="inputAge">Age</label>
+                <input disabled type="number" [(ngModel)]="patient.age" name="age" class="form-control" id="inputAge">
+
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="inputPhone">Telephone</label>
+                <input disabled type="text" [(ngModel)]="patient.telephone" name="telephone" class="form-control" id="inputPhone">
+
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputAddress">Adresse</label>
+                <input disabled type="text" [(ngModel)]="patient.adresse" name="adresse" class="form-control" id="inputAddress">
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="inputKey">Device Key</label>
+                <input disabled type="text" [(ngModel)]="patient.deviceKey" name="key" class="form-control" id="inputKey">
+              </div>
+
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+<div class="container" *ngIf="currentUser.role ==='ROLE_MEDECIN'">
+  <div class="row">
+    <div class="row">
+      <div class="col-2" id="side">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-9" id="main">
+        <div class="row">
+          <div class="col-12" id="nav">
+            <app-navdm (messageEvent)="recieveMsg($event)"></app-navdm>
+        </div>
+        <div class="col-12" id="content">
+
+          <div class="row">
+            <div class="col-6" id="ant">
+
+              <div class="row" id="title">Familiaux</div>
+
+              <div class="row" id="add"  *ngIf="state!='TERMINER'">
+                <div class="input-group">
+                  <div class="input-group-prepend col-4">
+                    <input [(ngModel)]="antF.nom" type="text" class="form-control">
+                  </div>
+                  <input [(ngModel)]="antF.remarque" type="text" class="form-control">
+                  <i (click)="addAntecedent('f')" class="bi bi-save-fill"></i>
+                </div>
+              </div>
+
+              <div class="row" id="list">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                  <table class="table">
+                    <tbody>
+                      <tr *ngFor="let fa of f">
+                        <td id="nom" class="col-4">{{fa.nom}}</td>
+                        <td id="rmq" class="col-7"><em>{{fa.remarque}}</em></td>
+                        <td><i *ngIf="state!='TERMINER'" (click)="delete(fa.id)" class="bi bi-trash-fill"></i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-6" id="ant">
+              <div class="row" id="title">Medicaux</div>
+              <div class="row" id="add"  *ngIf="state!='TERMINER'">
+                <div class="input-group">
+                  <div class="input-group-prepend col-4">
+                    <input [(ngModel)]="antM.nom" type="text" class="form-control">
+                  </div>
+                  <input [(ngModel)]="antM.remarque" type="text" class="form-control">
+                  <i (click)="addAntecedent('m')" class="bi bi-save-fill"></i>
+                </div>
+              </div>
+
+              <div class="row" id="list">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                  <table class="table">
+                    <tbody>
+                      <tr *ngFor="let me of m">
+                        <td id="nom" class="col-4">{{me.nom}}</td>
+                        <td id="rmq" class="col-7"><em>{{me.remarque}}</em></td>
+                        <td><i *ngIf="state!='TERMINER'" (click)="delete(me.id)" class="bi bi-trash-fill"></i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-6" id="ant">
+              <div class="row" id="title">Chirurgicaux</div>
+              <div class="row" id="add"  *ngIf="state!='TERMINER'">
+                <div class="input-group">
+                  <div class="input-group-prepend col-4">
+                    <input [(ngModel)]="antCH.nom" type="text" class="form-control">
+                  </div>
+                  <input [(ngModel)]="antCH.remarque" type="text" class="form-control">
+                  <i (click)="addAntecedent('ch')" class="bi bi-save-fill"></i>
+                </div>
+              </div>
+
+              <div class="row" id="list">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                  <table class="table">
+                    <tbody>
+                      <tr *ngFor="let chi of ch">
+                        <td id="nom" class="col-4">{{chi.nom}}</td>
+                        <td id="rmq" class="col-7"><em>{{chi.remarque}}</em></td>
+                        <td><i *ngIf="state!='TERMINER'" (click)="delete(chi.id)" class="bi bi-trash-fill"></i></td>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-6" id="ant">
+              <div class="row" id="title">Habitudes</div>
+              <div class="row" id="add"  *ngIf="state!='TERMINER'">
+                <div class="input-group">
+                  <div class="input-group-prepend col-4">
+                    <input [(ngModel)]="antH.nom" type="text" class="form-control">
+                  </div>
+                  <input [(ngModel)]="antH.remarque" type="text" class="form-control">
+                  <i (click)="addAntecedent('h')" class="bi bi-save-fill"></i>
+                </div>
+              </div>
+
+              <div class="row" id="list">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                  <table class="table">
+                    <tbody>
+                      <tr *ngFor="let ha of h">
+                        <td id="nom" class="col-4">{{ha.nom}}</td>
+                        <td id="rmq" class="col-7"><em>{{ha.remarque}}</em></td>
+                        <td><i *ngIf="state!='TERMINER'" (click)="delete(ha.id)" class="bi bi-trash-fill"></i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

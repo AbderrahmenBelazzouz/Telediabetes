@@ -1,0 +1,26 @@
+.btn{
+  margin-top: 5px;
+}
+#cin{
+  color: dodgerblue;
+  font-weight: 500;
+}
+
+
+select{
+  width: 90%;
+}
+i{
+  font-size: 18px;
+  color:forestgreen;
+}
+i:hover{
+  cursor: pointer;
+  color:chartreuse;
+}
+tr:hover {
+  border-color:rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+

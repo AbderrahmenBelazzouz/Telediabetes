@@ -1,0 +1,232 @@
+<div class="container" *ngIf="currentUser.role ==='ROLE_MEDECIN'">
+  <div class="row">
+    <div class="row">
+      <div class="col-3" id="side">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-8" id="main">
+        <div class="row">
+          <div class="col-12" id="nav">
+            <app-navdm (messageEvent)="recieveMsg($event)"></app-navdm>
+            <app-ec-nav></app-ec-nav>
+             <app-bpnav (notify)="onNotified($event)"></app-bpnav>
+          </div>
+
+   <!--hba1c-->
+    <div *ngFor="let hba1c of bpHba1cs">
+      <div *ngIf="state==='TERMINER' && isHba1c()" class="col-12" id="bp">
+        <div class="paper">
+          <div id="title">Bilan Hba1c</div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">Glycémie à jeun : </div>
+             <div class="col-2">{{hba1c.glycemie_a_jeun}} g/l</div>
+          </div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">Hemoglobine Glyquee (HBA1c) : </div>
+            <div class="col-2">{{hba1c.hemoglobine_glyquee}} %</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- lipidique-->
+    <div *ngFor="let lipidique of bplipids">
+      <div *ngIf="state==='TERMINER' && isLipidique()" class="col-12" id="bp">
+        <div class="paper">
+          <div id="title">Bilan Lipidique</div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">Créatinine : </div>
+             <div class="col-2">{{lipidique.creatinine}} mg/l</div>
+          </div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">Triglycerides : </div>
+             <div class="col-2">{{lipidique.triglycerides}} g/l</div>
+          </div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">Cholesterole Total : </div>
+             <div class="col-2">{{lipidique.cholesterolTotal}} mg/l</div>
+          </div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">HDL Cholesterol : </div>
+            <div class="col-2">{{lipidique.hdlCholesterol}} g/l</div>
+          </div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">LDL Total : </div>
+            <div class="col-2">{{lipidique.ldlCholesterol}} g/l</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- renal-->
+     <div *ngFor="let renal of bprenals">
+      <div *ngIf="state==='TERMINER' && isRenal()" class="col-12" id="bp">
+        <div class="paper">
+          <div id="title">Bilan Rénal</div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">Ph : </div>
+             <div class="col-2">{{renal.ph}}</div>
+          </div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">Densité : </div>
+             <div class="col-2">{{renal.densite}}</div>
+          </div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">Glucose : </div>
+             <div class="col-2">{{renal.glucose}} mg/dl</div>
+          </div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">Corps cétoniques : </div>
+             <div class="col-2">{{renal.corps_cetoniques}}</div>
+          </div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">Protéines : </div>
+             <div class="col-2">{{renal.proteines}} mg/dl</div>
+          </div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">Sang : </div>
+             <div class="col-2">{{renal.sang}}</div>
+          </div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">Leucocytes : </div>
+             <div class="col-2">{{ renal.leucocytes}}</div>
+          </div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">Nitrites : </div>
+             <div class="col-2">{{renal.nitrites}}</div>
+          </div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">Urobilinogène : </div>
+            <div class="col-2">{{renal.urobilinogene}}</div>
+          </div>
+          <div class="row" id="at">
+            <div class="col-5" id="a">Bilirubine : </div>
+            <div class="col-2">{{renal.bilirubine}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+      <div *ngIf="state!='TERMINER'" class="col-12" id="content">
+
+        <div class="row">
+          <div  class="col-3"><button class="btn btn-success" (click)="savebp()"><i class="bi bi-save-fill"></i> Enregistrer</button></div>
+        </div>
+        <!-- hba1c-->
+
+        <div class="row" id="e" *ngIf="isHba1c()">
+          <div class="col-3" id="t">Glycémie à jeun</div>
+          <div class="col-2">
+            <input [(ngModel)]="hba1c.glycemie_a_jeun" type="text" placeholder="g/l" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+          <div class="col-3 offset-2" id="t">Hemoglobine Glyquee (HBA1c)</div>
+          <div class="col-2">
+            <input [(ngModel)]="hba1c.hemoglobine_glyquee" type="text" placeholder="%" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+        </div>
+
+        <!-- Lipidique-->
+        <div class="row" id="e" *ngIf="isLipidique()">
+
+          <div class="col-3" id="t">Créatinine</div>
+          <div class="col-2">
+            <input [(ngModel)]="lipidique.creatinine" type="text" placeholder="mg/l" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+          <div class="col-3 offset-2" id="t">Triglycerides</div>
+          <div class="col-2">
+            <input [(ngModel)]="lipidique.triglycerides" type="text" placeholder="g/l" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+        </div>
+
+        <div class="row" id="e" *ngIf="isLipidique()">
+          <div class="col-3" id="t">Cholesterole Total</div>
+          <div class="col-2">
+            <input [(ngModel)]="lipidique.cholesterolTotal" type="text" placeholder="mg/l" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+          <div class="col-3 offset-2" id="t">HDL Cholesterol</div>
+          <div class="col-2">
+            <input [(ngModel)]="lipidique.hdlCholesterol" type="text" placeholder="g/l" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+        </div>
+
+        <div class="row" id="e" *ngIf="isLipidique()">
+          <div class="col-3" id="t">LDL Total</div>
+          <div class="col-2">
+            <input [(ngModel)]="lipidique.ldlCholesterol" type="text" placeholder="g/l" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+        </div>
+
+
+
+         <!-- Renal-->
+         <div class="row" id="e" *ngIf="isRenal()">
+          <div class="col-3" id="t">pH</div>
+          <div class="col-2">
+            <input [(ngModel)]="renal.pH" type="text" placeholder="" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+          <div class="col-3 offset-2" id="t">Densité</div>
+          <div class="col-2">
+            <input [(ngModel)]="renal.densite" type="text" placeholder="" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+        </div>
+
+        <div class="row" id="e" *ngIf="isRenal()">
+          <div class="col-3" id="t">Glucose</div>
+          <div class="col-2">
+            <input [(ngModel)]="renal.glucose" type="text" placeholder="mg/dl" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+          <div class="col-3 offset-2" id="t">Corps cétoniques</div>
+          <div class="col-2">
+            <input [(ngModel)]="renal.corps_cetoniques" type="text" placeholder="" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+        </div>
+
+        <div class="row" id="e" *ngIf="isRenal()">
+          <div class="col-3" id="t">Protéines</div>
+          <div class="col-2">
+            <input [(ngModel)]="renal.proteines" type="text" placeholder="mg/dl" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+          <div class="col-3 offset-2" id="t">Sang</div>
+          <div class="col-2">
+            <input [(ngModel)]="renal.sang" type="text" placeholder="" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+        </div>
+
+        <div class="row" id="e" *ngIf="isRenal()">
+          <div class="col-3" id="t">Leucocytes</div>
+          <div class="col-2">
+            <input [(ngModel)]="renal.leucocytes" type="text" placeholder="" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+          <div class="col-3 offset-2" id="t">Nitrites</div>
+          <div class="col-2">
+            <input [(ngModel)]="renal.nitrites" type="text" placeholder="" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+        </div>
+
+        <div class="row" id="e" *ngIf="isRenal()">
+          <div class="col-3" id="t">Urobilinogène</div>
+          <div class="col-2">
+            <input [(ngModel)]="renal.urobilinogene" type="text" placeholder="" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+
+          <div class="col-3 offset-2" id="t">Bilirubine</div>
+          <div class="col-2">
+            <input [(ngModel)]="renal.bilirubine" type="text" placeholder="" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+          </div>
+        </div>
+
+
+    </div>
+  </div>
+</div>

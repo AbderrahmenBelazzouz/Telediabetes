@@ -1,0 +1,130 @@
+.container{
+  background-color: white;
+}
+#side{
+  border-right: 1px solid black;
+}
+#main{
+  margin: 10px;
+}
+.rounded{
+  margin: 10px;
+  width: 100px;
+  height: 100px;
+}
+#t{
+  font-weight: bold;
+}
+#tt{
+  padding-top: 10px;
+}
+#e{
+  margin-top: 15px;
+}
+.o{
+  margin-top: 10px;
+}
+app-navdm{
+  margin-top: 15px;
+}
+.my-custom-scrollbar {
+  position: relative;
+  height: 200px;
+  overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+  display: block;
+  }
+table{
+  margin-top: 10px;
+  background-color: cornsilk;
+}
+#title{
+  text-align: center;
+  font-weight: 600;
+  font-size: x-large;
+  margin-bottom: 20px;
+  color: dodgerblue;
+}
+#a{
+  font-weight: 500;
+}
+
+#bp, .paper{
+  border: 2px solid black;
+  padding: 10px;
+}
+#at{
+  padding: 10px;
+}
+i{
+  padding: 5px;
+}
+
+.bi-printer-fill{
+  color: black;
+}
+button{
+  display: inline-block;
+  width: max-content;
+  margin: 15px;
+}
+
+
+
+.print{visibility: hidden;
+  top:0;}
+
+.demo {
+  border:1px double #000000;
+  border-collapse:collapse;
+  padding:5px;
+}
+
+@media print {
+  .container{display: none;}
+  .print{visibility: visible;}
+}
+
+#med{
+  margin-top: 10px;
+}
+#first{
+  text-align: center;
+}
+p{
+  font-size: large;
+}
+#doctor{
+  text-align: center;
+  font-weight: 500;
+}
+
+#a{
+  font-weight: 500;
+}
+#at{
+  padding: 10px;
+}
+.unit{
+  padding: 0px;
+  padding-top: 5px;
+  margin: 0px;
+}
+p, h1{
+  text-align: center;
+}
+
+h1{
+  padding:30px;
+}
+
+.un{
+  list-style: disc;
+}
+
+.end{
+  margin-top: 30px;
+}
+
+

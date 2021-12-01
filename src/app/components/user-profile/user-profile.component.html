@@ -1,0 +1,37 @@
+
+<div class="container" *ngIf="user.role !='ROLE_PATIENT'">
+  <div class="row">
+    <div class="row">
+      <div class="col-2" id="side">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-9" id="main">
+        <div class="row"><h1>My Profile</h1></div>
+        <div class="row">
+          <form #profileForm="ngForm">
+            <div class="form-row">
+
+              <div class="form-group col-md-4">
+                  <label for="phone">Telephone</label>
+                  <input type="text" [(ngModel)]="user.telephone" placeholder="07..." name="phone" class="form-control" id="phone"
+                   pattern="[0][7|6|5][0-9]{8}" name="ph" #ph="ngModel" required>
+                      <div *ngIf="ph.invalid && (ph.dirty || ph.touched)" class="alert">
+
+                        <div *ngIf="ph.errors?.required">
+                          phone Number is required.
+                        </div>
+                        <div *ngIf="ph.errors?.pattern">
+                          Please Enter a valid Phone Number.
+                        </div>
+                </div>
+            </div>
+
+            </div>
+              <button [disabled]="profileForm.form.invalid" class="btn btn-success" (click)="updateUser()">submit</button>
+              <button class="btn btn-info" routerLink="/user/profile">cancel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

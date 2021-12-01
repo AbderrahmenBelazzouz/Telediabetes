@@ -1,0 +1,34 @@
+.btn{
+  margin-top: 5px;
+}
+
+select{
+  width: 90%;
+}
+
+.bi-trash-fill:hover{
+  color:crimson;
+
+}
+.bi-eye-fill:hover{
+  color:dodgerblue;
+}
+i{
+  font-size: 18px;
+}
+i:hover{
+  cursor: pointer;
+}
+tr:hover {
+  border-color:rgb(0, 0, 0);
+  font-weight: bold;
+}
+.stateOn{
+  color:forestgreen;
+}
+.stateOff{
+  color: crimson;
+}
+.stateDone{
+  color: dodgerblue;
+}
